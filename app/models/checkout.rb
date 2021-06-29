@@ -1,5 +1,5 @@
 class Checkout < ApplicationRecord
   belongs_to :user
-  has_many :books, dependent: :destroy
-  has_many :mediaels, dependent: :destroy
+  has_many :leases, dependent: :destroy
+  has_many :items, through: :leases
 end

@@ -10,20 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_24_010058) do
+ActiveRecord::Schema.define(version: 2021_06_29_013130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "books", force: :cascade do |t|
-    t.string "title"
-    t.string "author"
-    t.integer "pages"
-    t.bigint "checkout_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["checkout_id"], name: "index_books_on_checkout_id"
-  end
 
   create_table "checkouts", force: :cascade do |t|
     t.string "checkout_date"
@@ -35,15 +25,23 @@ ActiveRecord::Schema.define(version: 2021_06_24_010058) do
     t.index ["user_id"], name: "index_checkouts_on_user_id"
   end
 
-  create_table "mediaels", force: :cascade do |t|
+  create_table "items", force: :cascade do |t|
     t.string "title"
-    t.string "creator"
-    t.string "thumbnail"
-    t.string "content"
-    t.bigint "checkout_id"
+    t.string "author"
+    t.string "pic"
+    t.string "genre"
+    t.string "item_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["checkout_id"], name: "index_mediaels_on_checkout_id"
+  end
+
+  create_table "leases", force: :cascade do |t|
+    t.bigint "checkout_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["checkout_id"], name: "index_leases_on_checkout_id"
+    t.index ["item_id"], name: "index_leases_on_item_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,7 +75,7 @@ ActiveRecord::Schema.define(version: 2021_06_24_010058) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
-  add_foreign_key "books", "books", column: "checkout_id"
   add_foreign_key "checkouts", "users"
-  add_foreign_key "mediaels", "mediaels", column: "checkout_id"
+  add_foreign_key "leases", "checkouts"
+  add_foreign_key "leases", "items"
 end

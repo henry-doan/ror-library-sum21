@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Api::BooksControllerTest < ActionDispatch::IntegrationTest
+class LeaseTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

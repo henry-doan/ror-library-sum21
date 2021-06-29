@@ -1,6 +1,6 @@
 require "test_helper"
 
-class MediaelTest < ActiveSupport::TestCase
+class Api::ItemsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
