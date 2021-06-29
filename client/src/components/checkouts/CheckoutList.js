@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { CheckoutConsumer } from '../../providers/CheckoutProvider';
 import { ListGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const CheckoutList = ({ checkouts, getAllCheckouts }) => {
   
@@ -12,7 +13,12 @@ const CheckoutList = ({ checkouts, getAllCheckouts }) => {
     <>
       <ListGroup>
         { checkouts.map( c => 
-          <ListGroup.Item>Checkout during: {c.checkout_date}</ListGroup.Item>
+          <Link to={{
+            pathname: `/checkouts/${c.id}`,
+            state: { ...c }
+          }}>
+            <ListGroup.Item>Checkout during: {c.checkout_date}</ListGroup.Item>
+          </Link>
         )}
       </ListGroup>
     </>
