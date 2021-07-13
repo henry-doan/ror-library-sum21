@@ -2,6 +2,7 @@ import { Button, Modal } from 'react-bootstrap';
 import { useState } from 'react';
 import CheckoutForm from './CheckoutForm';
 import { CheckoutConsumer } from '../../providers/CheckoutProvider';
+import LeaseList from '../leases/LeaseList';
 
 const CheckoutShow = ({ location, match, deleteCheckout, history }) => {
   const [editshow, setEditShow] = useState(false);
@@ -38,6 +39,7 @@ const CheckoutShow = ({ location, match, deleteCheckout, history }) => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <LeaseList checkoutId={location.state.id} />
     </>
   )
 }
