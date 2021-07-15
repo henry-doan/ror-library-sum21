@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :api do 
     resources :checkouts do
       resources :leases
+      get '/avalItems', to: "leases#avalItems"
     end
     
     resources :items

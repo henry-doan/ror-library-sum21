@@ -3,6 +3,7 @@ import { useState } from 'react';
 import CheckoutForm from './CheckoutForm';
 import { CheckoutConsumer } from '../../providers/CheckoutProvider';
 import LeaseList from '../leases/LeaseList';
+import { Link } from 'react-router-dom';
 
 const CheckoutShow = ({ location, match, deleteCheckout, history }) => {
   const [editshow, setEditShow] = useState(false);
@@ -26,6 +27,14 @@ const CheckoutShow = ({ location, match, deleteCheckout, history }) => {
       <Button variant="warning" onClick={() => handleEditShow()}>Edit</Button>
       {' '}
       <Button variant="danger" onClick={() => deleteCheckout(match.params.id, history)}>Delete</Button>
+      {' '}
+      <Link to={{
+        pathname: `/checkouts/${location.state.id}/AddLease`
+      }}>
+        <Button>
+          Add Lease
+        </Button>
+      </Link>
       <Modal show={editshow} onHide={handleEditClose}>
         <Modal.Header closeButton>
           <Modal.Title>Checkout Show # {location.state.id} Edit</Modal.Title>

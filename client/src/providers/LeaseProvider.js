@@ -7,6 +7,7 @@ export const LeaseConsumer = LeaseContext.Consumer;
 
 const LeaseProvider = ({ children }) => {
   const [leases, setLeases] = useState([])
+  const [avalItems, setItems] = useState([])
 
   const getAllLeases = (checkoutId) => {
     axios.get(`/api/checkouts/${checkoutId}/leases`)
@@ -46,13 +47,23 @@ const LeaseProvider = ({ children }) => {
       .catch( err => console.log(err) )
   }
 
+  const getAvalItems = (checkoutId) => {
+    axios.get(`/api/checkouts/${checkoutId}/avalItems`)
+      .then( res => {
+        setItems(res.data)
+      })
+      .catch( err => console.log(err) )
+  }
+
   return(
     <LeaseContext.Provider value={{
-      leases, 
+      leases,
+      avalItems, 
       getAllLeases: getAllLeases,
       addLease: addLease,
       updateLease: updateLease,
       deleteLease: deleteLease,
+      getAvalItems: getAvalItems,
     }}>
       { children }
     </LeaseContext.Provider>

@@ -32,6 +32,11 @@ class Api::LeasesController < ApplicationController
     render json: { message: "Lease deleted" }
   end
 
+  def avalItems
+    @items = Item.all - @checkout.items
+    render json: @items
+  end
+
   private 
     def set_checkout
       @checkout = Checkout.find(params[:checkout_id])

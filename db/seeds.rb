@@ -12,6 +12,7 @@
   )
 
   item = Item.create(
+    title: Faker::Internet.username,
     author: Faker::Internet.username,
     pic: Faker::Fillmurray.image,
     genre: @genres.sample,

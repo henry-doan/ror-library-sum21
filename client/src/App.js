@@ -10,6 +10,7 @@ import FetchUser from './components/auth/FetchUser';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import CheckoutShow from './components/checkouts/CheckoutShow';
 import LeaseShow from './components/leases/LeaseShow';
+import LeaseForm from './components/leases/LeaseForm';
 
 const App = () => (
   <>
@@ -23,6 +24,7 @@ const App = () => (
           <ProtectedRoute exact path="/checkouts/:id" component={CheckoutShow} />
           <ProtectedRoute exact path="/checkouts" component={Checkouts} />
           <ProtectedRoute exact path="/checkouts/:checkoutId/leases/:id" component={LeaseShow} />
+          <ProtectedRoute exact path="/checkouts/:checkoutId/AddLease" component={LeaseForm} />
           <Route component={Nomatch} />
         </Switch>
       </Container>
