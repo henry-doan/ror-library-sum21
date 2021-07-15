@@ -17,10 +17,11 @@ const LeaseProvider = ({ children }) => {
       .catch( err => console.log(err) )
   }
 
-  const addLease = (checkoutId, lease) => {
+  const addLease = (checkoutId, lease, history) => {
     axios.post(`/api/checkouts/${checkoutId}/leases`, { lease })
       .then( res => {
         setLeases([ ...leases, res.data ])
+        history.push(`/checkouts/`)
       })
       .catch( err => console.log(err) )
   }
